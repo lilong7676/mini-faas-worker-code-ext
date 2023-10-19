@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@types/mocha': ^10.0.2
   '@types/node': ^16.18.34
+  '@types/path-browserify': ^1.0.0
   '@types/vscode': ^1.83.0
   '@types/webpack-env': ^1.18.2
   '@typescript-eslint/eslint-plugin': ^6.7.3
@@ -11,15 +12,20 @@ specifiers:
   assert: ^2.1.0
   eslint: ^8.50.0
   mocha: ^10.2.0
+  path-browserify: ^1.0.1
   process: ^0.11.10
   ts-loader: ^9.4.4
   typescript: ^5.2.2
   webpack: ^5.88.2
   webpack-cli: ^5.1.4
 
+dependencies:
+  path-browserify: 1.0.1
+
 devDependencies:
   '@types/mocha': 10.0.2
   '@types/node': 16.18.58
+  '@types/path-browserify': 1.0.0
   '@types/vscode': 1.83.0
   '@types/webpack-env': 1.18.2
   '@typescript-eslint/eslint-plugin': 6.8.0_g5tgkvya3z5bpn5xlbld6exflu
@@ -217,6 +223,10 @@ packages:
 
   /@types/node/16.18.58:
     resolution: {integrity: sha512-YGncyA25/MaVtQkjWW9r0EFBukZ+JulsLcVZBlGUfIb96OBMjkoRWwQo5IEWJ8Fj06Go3GHw+bjYDitv6BaGsA==}
+    dev: true
+
+  /@types/path-browserify/1.0.0:
+    resolution: {integrity: sha512-XMCcyhSvxcch8b7rZAtFAaierBYdeHXVvg2iYnxOV0MCQHmPuRRmGZPFDRzPayxcGiiSL1Te9UIO+f3cuj0tfw==}
     dev: true
 
   /@types/semver/7.5.3:
@@ -2046,6 +2056,10 @@ packages:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
     engines: {node: '>= 0.8'}
     dev: true
+
+  /path-browserify/1.0.1:
+    resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
+    dev: false
 
   /path-exists/4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}

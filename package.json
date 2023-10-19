@@ -1,6 +1,6 @@
 {
-  "name": "lowcode-faas-cloud",
-  "displayName": "lowcode-faas-cloud",
+  "name": "mini-faas-worker-code-ext",
+  "displayName": "mini-faas-worker-code-ext",
   "description": "低码云函数在线编辑插件",
   "version": "0.0.1",
   "engines": {
@@ -9,13 +9,19 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "browser": "./dist/web/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "lowcode-faas-cloud.helloWorld",
+        "command": "mini-faas-worker-code-ext.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "mini-faas-worker-code-ext.dump",
+        "title": "Dump all faas code"
       }
     ]
   },
@@ -30,20 +36,24 @@
     "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
   },
   "devDependencies": {
-    "@types/node": "^16.18.34",
-    "@types/vscode": "^1.83.0",
     "@types/mocha": "^10.0.2",
-    "eslint": "^8.50.0",
+    "@types/node": "^16.18.34",
+    "@types/path-browserify": "^1.0.0",
+    "@types/vscode": "^1.83.0",
+    "@types/webpack-env": "^1.18.2",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
-    "mocha": "^10.2.0",
-    "typescript": "^5.2.2",
     "@vscode/test-web": "^0.0.46",
-    "ts-loader": "^9.4.4",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "@types/webpack-env": "^1.18.2",
     "assert": "^2.1.0",
-    "process": "^0.11.10"
+    "eslint": "^8.50.0",
+    "mocha": "^10.2.0",
+    "process": "^0.11.10",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "path-browserify": "^1.0.1"
   }
 }
