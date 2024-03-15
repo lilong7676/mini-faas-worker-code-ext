@@ -8,8 +8,6 @@
 
 ## Requirements
 
-
-
 ## Extension Settings
 
 

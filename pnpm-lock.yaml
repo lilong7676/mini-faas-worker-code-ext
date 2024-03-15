@@ -8,7 +8,7 @@ specifiers:
   '@types/webpack-env': ^1.18.2
   '@typescript-eslint/eslint-plugin': ^6.7.3
   '@typescript-eslint/parser': ^6.7.3
-  '@vscode/test-web': ^0.0.46
+  '@vscode/test-web': ^0.0.52
   assert: ^2.1.0
   eslint: ^8.50.0
   mocha: ^10.2.0
@@ -30,7 +30,7 @@ devDependencies:
   '@types/webpack-env': 1.18.2
   '@typescript-eslint/eslint-plugin': 6.8.0_g5tgkvya3z5bpn5xlbld6exflu
   '@typescript-eslint/parser': 6.8.0_srhnpoqmhm6ulnern6fnsuapfi
-  '@vscode/test-web': 0.0.46
+  '@vscode/test-web': 0.0.52
   assert: 2.1.0
   eslint: 8.51.0
   mocha: 10.2.0
@@ -146,8 +146,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@koa/cors/4.0.0:
-    resolution: {integrity: sha512-Y4RrbvGTlAaa04DBoPBWJqDR5gPj32OOz827ULXfgB1F7piD1MB/zwn8JR2LAnvdILhxUbXbkXGWuNVsFuVFCQ==}
+  /@koa/cors/5.0.0:
+    resolution: {integrity: sha512-x/iUDjcS90W69PryLDIMgFyV21YLTnG9zOpPXS7Bkt2b8AsY3zZsIpOLBkYr9fBcF3HbkKaER5hOBZLfpLgYNw==}
     engines: {node: '>= 14.0.0'}
     dependencies:
       vary: 1.1.2
@@ -187,12 +187,12 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@playwright/browser-chromium/1.39.0:
-    resolution: {integrity: sha512-s1WPO0qOE7PIZcdcJEd4CHQgXf9rOwy00Den8DsXTI26n/Eqa2HzFSbLRE1Eh2nIJZFSGyKLbopHR0HkT8ClZw==}
+  /@playwright/browser-chromium/1.42.1:
+    resolution: {integrity: sha512-A7pcZIZQIiiafO2UCR/OEdkvGM8Hr2gsjcK0cQ7WStF28HUpPBbJiwR9qmo+rjxaEaK7c9XD1qNXOng8Q+eI0Q==}
     engines: {node: '>=16'}
     requiresBuild: true
     dependencies:
-      playwright-core: 1.39.0
+      playwright-core: 1.42.1
     dev: true
 
   /@types/eslint-scope/3.7.5:
@@ -372,24 +372,24 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@vscode/test-web/0.0.46:
-    resolution: {integrity: sha512-s5rKDtCvIWN6kJpjXzBoWpLvftjH3m2r2MQNGUGsdY1+mOJ06lbbHeJn+g30+p0ec4Vh7PpBZGECflrRW+oH4Q==}
+  /@vscode/test-web/0.0.52:
+    resolution: {integrity: sha512-PEYyru1GTUgNFpICWnvz33MnZ+nIIdG6feYHebvJMyFRZFL4s35Mp/6/aa8xUvfzAz/XBHCsbLRtJ1l067f/eQ==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      '@koa/cors': 4.0.0
+      '@koa/cors': 5.0.0
       '@koa/router': 12.0.1
-      '@playwright/browser-chromium': 1.39.0
+      '@playwright/browser-chromium': 1.42.1
       gunzip-maybe: 1.4.2
-      http-proxy-agent: 7.0.0
-      https-proxy-agent: 7.0.2
-      koa: 2.14.2
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.4
+      koa: 2.15.0
       koa-morgan: 1.0.1
       koa-mount: 4.0.0
       koa-static: 5.0.0
       minimist: 1.2.8
-      playwright: 1.39.0
-      tar-fs: 3.0.4
+      playwright: 1.42.1
+      tar-fs: 3.0.5
       vscode-uri: 3.0.8
     transitivePeerDependencies:
       - supports-color
@@ -659,6 +659,34 @@ packages:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
 
+  /bare-events/2.2.1:
+    resolution: {integrity: sha512-9GYPpsPFvrWBkelIhOhTWtkeZxVxZOdb3VnFTCzlOo3OjvmTvzLoZFUT8kNFACx0vJej6QPney1Cf9BvzCNE/A==}
+    dev: true
+    optional: true
+
+  /bare-fs/2.2.2:
+    resolution: {integrity: sha512-X9IqgvyB0/VA5OZJyb5ZstoN62AzD7YxVGog13kkfYWYqJYcK0kcqLZ6TrmH5qr4/8//ejVcX4x/a0UvaogXmA==}
+    requiresBuild: true
+    dependencies:
+      bare-events: 2.2.1
+      bare-os: 2.2.1
+      bare-path: 2.1.0
+      streamx: 2.15.1
+    dev: true
+    optional: true
+
+  /bare-os/2.2.1:
+    resolution: {integrity: sha512-OwPyHgBBMkhC29Hl3O4/YfxW9n7mdTr2+SsO29XBWKKJsbgj3mnorDB80r5TiCQgQstgE5ga1qNYrpes6NvX2w==}
+    dev: true
+    optional: true
+
+  /bare-path/2.1.0:
+    resolution: {integrity: sha512-DIIg7ts8bdRKwJRJrUMy/PICEaQZaPGZ26lsSx9MJSwIhSrcdHn7/C8W+XmnG/rKi6BaRcz+JO00CjZteybDtw==}
+    dependencies:
+      bare-os: 2.2.1
+    dev: true
+    optional: true
+
   /basic-auth/2.0.1:
     resolution: {integrity: sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==}
     engines: {node: '>= 0.8'}
@@ -835,8 +863,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /cookies/0.8.0:
-    resolution: {integrity: sha512-8aPsApQfebXnuI+537McwYsDtjVxGm8gTIzQI3FDW6t5t/DAhERxtnbEPN/8RX+uZthoz4eCOgloXaE5cYyNow==}
+  /cookies/0.9.1:
+    resolution: {integrity: sha512-TG2hpqe4ELx54QER/S3HQ9SRVnQnGBtKUz5bLQWtYAQ+o6GpgMs6sYUvaiJjVxb+UXwhRhAEP3m7LbsIZ77Hmw==}
     engines: {node: '>= 0.8'}
     dependencies:
       depd: 2.0.0
@@ -1444,8 +1472,8 @@ packages:
       toidentifier: 1.0.1
     dev: true
 
-  /http-proxy-agent/7.0.0:
-    resolution: {integrity: sha512-+ZT+iBxVUQ1asugqnD6oWoRiS25AkjNfG085dKJGtGxkdwLQrMKU5wJr2bOOFAXzKcTuqq+7fZlTMgG3SRfIYQ==}
+  /http-proxy-agent/7.0.2:
+    resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.0
@@ -1454,8 +1482,8 @@ packages:
       - supports-color
     dev: true
 
-  /https-proxy-agent/7.0.2:
-    resolution: {integrity: sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA==}
+  /https-proxy-agent/7.0.4:
+    resolution: {integrity: sha512-wlwpilI7YdjSkWaQ/7omYBMTliDcmCN8OLihO6I9B86g06lMyAoqgoDpV0XqoaPOKj+0DIdAvnsWfyAAhmimcg==}
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.0
@@ -1726,15 +1754,15 @@ packages:
       - supports-color
     dev: true
 
-  /koa/2.14.2:
-    resolution: {integrity: sha512-VFI2bpJaodz6P7x2uyLiX6RLYpZmOJqNmoCst/Yyd7hQlszyPwG/I9CQJ63nOtKSxpt5M7NH67V6nJL2BwCl7g==}
+  /koa/2.15.0:
+    resolution: {integrity: sha512-KEL/vU1knsoUvfP4MC4/GthpQrY/p6dzwaaGI6Rt4NQuFqkw3qrvsdYF5pz3wOfi7IGTvMPHC9aZIcUKYFNxsw==}
     engines: {node: ^4.8.4 || ^6.10.1 || ^7.10.1 || >= 8.1.4}
     dependencies:
       accepts: 1.3.8
       cache-content-type: 1.0.1
       content-disposition: 0.5.4
       content-type: 1.0.5
-      cookies: 0.8.0
+      cookies: 0.9.1
       debug: 4.3.4
       delegates: 1.0.0
       depd: 2.0.0
@@ -1857,10 +1885,6 @@ packages:
 
   /minimist/1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
-    dev: true
-
-  /mkdirp-classic/0.5.3:
-    resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
     dev: true
 
   /mocha/10.2.0:
@@ -2113,18 +2137,18 @@ packages:
       find-up: 4.1.0
     dev: true
 
-  /playwright-core/1.39.0:
-    resolution: {integrity: sha512-+k4pdZgs1qiM+OUkSjx96YiKsXsmb59evFoqv8SKO067qBA+Z2s/dCzJij/ZhdQcs2zlTAgRKfeiiLm8PQ2qvw==}
+  /playwright-core/1.42.1:
+    resolution: {integrity: sha512-mxz6zclokgrke9p1vtdy/COWBH+eOZgYUVVU34C73M+4j4HLlQJHtfcqiqqxpP0o8HhMkflvfbquLX5dg6wlfA==}
     engines: {node: '>=16'}
     hasBin: true
     dev: true
 
-  /playwright/1.39.0:
-    resolution: {integrity: sha512-naE5QT11uC/Oiq0BwZ50gDmy8c8WLPRTEWuSSFVG2egBka/1qMoSqYQcROMT9zLwJ86oPofcTH2jBY/5wWOgIw==}
+  /playwright/1.42.1:
+    resolution: {integrity: sha512-PgwB03s2DZBcNRoW+1w9E+VkLBxweib6KTXM0M3tkiT4jVxKSi6PmVJ591J+0u10LUrgxB7dLRbiJqO5s2QPMg==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright-core: 1.39.0
+      playwright-core: 1.42.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -2425,12 +2449,14 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /tar-fs/3.0.4:
-    resolution: {integrity: sha512-5AFQU8b9qLfZCX9zp2duONhPmZv0hGYiBPJsyUdqMjzq/mqVpy/rEUSeHk1+YitmxugaptgBh5oDGU3VsAJq4w==}
+  /tar-fs/3.0.5:
+    resolution: {integrity: sha512-JOgGAmZyMgbqpLwct7ZV8VzkEB6pxXFBVErLtb+XCOqzc6w1xiWKI9GVd6bwk68EX7eJ4DWmfXVmq8K2ziZTGg==}
     dependencies:
-      mkdirp-classic: 0.5.3
       pump: 3.0.0
       tar-stream: 3.1.6
+    optionalDependencies:
+      bare-fs: 2.2.2
+      bare-path: 2.1.0
     dev: true
 
   /tar-stream/3.1.6:

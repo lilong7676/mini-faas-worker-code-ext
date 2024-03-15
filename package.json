@@ -10,18 +10,22 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
-  ],
+		"onFileSystem:memfs"
+	],
   "browser": "./dist/web/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "mini-faas-worker-code-ext.helloWorld",
-        "title": "Hello World"
+        "command": "mini-faas-worker-code-ext.init",
+        "title": "mini-faas-worker: init"
       },
       {
         "command": "mini-faas-worker-code-ext.dump",
-        "title": "Dump all faas code"
+        "title": "mini-faas-worker: Dump all faas code"
+      },
+      {
+        "command": "mini-faas-worker-code-ext.preview",
+        "title": "mini-faas-worker: build and preview"
       }
     ]
   },
@@ -43,7 +47,7 @@
     "@types/webpack-env": "^1.18.2",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
-    "@vscode/test-web": "^0.0.46",
+    "@vscode/test-web": "^0.0.52",
     "assert": "^2.1.0",
     "eslint": "^8.50.0",
     "mocha": "^10.2.0",
