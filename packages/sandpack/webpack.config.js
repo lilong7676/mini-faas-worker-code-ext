@@ -19,6 +19,7 @@ const webExtensionConfig = {
   output: {
     filename: "[name].js",
     path: path.resolve(process.cwd(), "dist"),
+    publicPath: "/",
   },
   resolve: {
     extensions: [".ts", ".js"], // support ts-files and js-files
@@ -67,6 +68,11 @@ const webExtensionConfig = {
     },
     compress: true,
     port: 9000,
+    allowedHosts: "all",
+    client: {
+      webSocketURL: "auto://0.0.0.0:0/ws",
+    },
+    host: "0.0.0.0",
   },
 };
 
