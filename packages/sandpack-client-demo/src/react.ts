@@ -96,7 +96,8 @@ export async function reactDemo() {
     showErrorScreen: true,
     showLoadingScreen: true,
     showOpenInCodeSandbox: false,
-    bundlerURL: "https://local2.dev.com",
+    // bundlerURL: "https://local2.dev.com",
+    bundlerURL: "http://localhost:9001",
   };
 
   // Properly load and mount the bundler
