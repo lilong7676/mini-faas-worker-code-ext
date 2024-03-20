@@ -1,6 +1,6 @@
-# mini-faas-worker-code-ext README
+# [WIP]: mini-faas-worker-code-ext
 
-A vscode web extension for mini-faas-worker online vscode editor
+A vscode web extension for mini-faas-worker online vscode editor.
 
 ## Features
 
