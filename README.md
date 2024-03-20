@@ -1,21 +1,22 @@
 # mini-faas-worker-code-ext README
 
-一个简单的云函数开发 vs code 插件
+A vscode web extension for mini-faas-worker online vscode editor
 
 ## Features
 
-支持本地开发、调试、部署云函数
+* [x] support vscode web memfs
+* [ ] use sandpack to build and run react in browser
+* [ ] support faas code completion
 
 ## Requirements
+For now, this extension only support vscode web.
 
 ## Extension Settings
-
+None.
 
 ## Known Issues
 
 
-## Release Notes
+<!-- ## Release Notes
 
-开发中
-
----
+--- -->
