@@ -49,6 +49,7 @@ importers:
 
   packages/sandpack:
     specifiers:
+      '@codesandbox/nodebox': ^0.1.9
       '@codesandbox/sandpack-client': ^2.13.2
       clean-webpack-plugin: ^4.0.0
       css-loader: ^6.10.0
@@ -60,7 +61,8 @@ importers:
       webpack-cli: ^5.1.4
       webpack-dev-server: ^5.0.3
     dependencies:
-      '@codesandbox/sandpack-client': 2.13.2
+      '@codesandbox/nodebox': 0.1.9
+      '@codesandbox/sandpack-client': link:../../../sandpack/sandpack-client
     devDependencies:
       clean-webpack-plugin: 4.0.0_webpack@5.89.0
       css-loader: 6.10.0_webpack@5.89.0
@@ -423,6 +425,13 @@ packages:
 
   /@codesandbox/nodebox/0.1.8:
     resolution: {integrity: sha512-2VRS6JDSk+M+pg56GA6CryyUSGPjBEe8Pnae0QL3jJF1mJZJVMDKr93gJRtBbLkfZN6LD/DwMtf+2L0bpWrjqg==}
+    dependencies:
+      outvariant: 1.4.0
+      strict-event-emitter: 0.4.6
+    dev: false
+
+  /@codesandbox/nodebox/0.1.9:
+    resolution: {integrity: sha512-h/SCSA5iasmEUlxWWQf2ecv1WgGoI5KLV5iZoN9YA1Hhz4DIacE3vwwD24Vn+1qczny4TEr8zwMQYZ1K8TbvzQ==}
     dependencies:
       outvariant: 1.4.0
       strict-event-emitter: 0.4.6

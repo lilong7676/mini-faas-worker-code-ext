@@ -16,6 +16,12 @@ function App() {
           <SandpackPreview />
         </SandpackLayout>
       </SandpackProvider>
+      <SandpackProvider template="node">
+        <SandpackLayout>
+          <SandpackCodeEditor />
+          <SandpackPreview />
+        </SandpackLayout>
+      </SandpackProvider>
     </>
   );
 }
