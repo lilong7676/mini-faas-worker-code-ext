@@ -3,12 +3,16 @@
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
-/** @typedef {import('webpack-dev-server').Configuration} DevServerConfiguration**/
+/** @typedef {import('webpack-dev-server').Configuration} DevServerConfiguration **/
 
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+const myCopyWebpackPlugin = require("./copy-webpack-plugin");
+
+const PORT = 9000;
 
 /** @type WebpackConfig */
 const webExtensionConfig = {
@@ -19,6 +23,7 @@ const webExtensionConfig = {
   output: {
     filename: "[name].js",
     path: path.resolve(process.cwd(), "dist"),
+    // path: path.resolve(process.cwd(), "../../resources/web"),
     publicPath: "/",
   },
   resolve: {
@@ -45,6 +50,9 @@ const webExtensionConfig = {
     ],
   },
   plugins: [
+    new myCopyWebpackPlugin({
+      dest: path.resolve(process.cwd(), "../../resources/web"),
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "sandpack client",
@@ -63,17 +71,29 @@ const webExtensionConfig = {
     level: "log", // enables logging required for problem matchers
   },
   devServer: {
+    hot: false,
+    liveReload: true,
     static: {
       directory: path.join(__dirname, "public"),
     },
     compress: true,
-    port: 9000,
+    port: PORT,
     allowedHosts: "all",
     client: {
-      webSocketURL: "auto://0.0.0.0:0/ws",
+      webSocketURL: {
+        hostname: "localhost",
+        port: PORT,
+        protocol: "ws",
+        pathname: "/ws",
+      },
     },
-    host: "0.0.0.0",
-    watchFiles: ["src/**/*", "node_modules/@codesandbox/sandpack-client/dist/**/*"],
+    watchFiles: [
+      "src/**/*",
+      "node_modules/@codesandbox/sandpack-client/dist/**/*",
+    ],
+    devMiddleware: {
+      writeToDisk: true,
+    },
   },
 };
 

@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2024-03-15 24:04:10
  * @Last Modified by: lilonglong
- * @Last Modified time: 2024-03-15 16:02:47
+ * @Last Modified time: 2024-03-20 16:31:35
  */
 
 import * as vscode from "vscode";
@@ -56,6 +56,11 @@ export class PreviewPannel {
     // 监听 webview 内的消息
     this._panel.webview.onDidReceiveMessage((message) => {
       vscode.window.showInformationMessage(JSON.stringify(message));
+      const { command } = message;
+      if (command === "reload") {
+        // 刷新页面，仅本地调试用 （https://github.com/microsoft/vscode/issues/96242）
+        vscode.commands.executeCommand('workbench.action.webview.reloadWebviewAction');
+      }
     });
 
     // 监听 webview 的关闭事件
@@ -76,48 +81,24 @@ export class PreviewPannel {
   }
 
   private _getHtmlForWebview(webview: vscode.Webview) {
-    // Local path to main script run in the webview
+    // Local path to main scrit run in the webview
     const scriptPathOnDisk = vscode.Uri.joinPath(
       this._extensionUri,
-      "resources/media",
-      "main.js"
+      "resources/web",
+      "app.js"
     );
 
     // And the uri we use to load this script in the webview
     const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
 
-    // Local path to css styles
-    const styleResetPath = vscode.Uri.joinPath(
-      this._extensionUri,
-      "resources/media",
-      "reset.css"
-    );
-    const stylesPathMainPath = vscode.Uri.joinPath(
-      this._extensionUri,
-      "resources/media",
-      "vscode.css"
-    );
-
-    // Uri to load styles into webview
-    const stylesResetUri = webview.asWebviewUri(styleResetPath);
-    const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
-
     return `<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-            <link href="${stylesResetUri}" rel="stylesheet">
-            <link href="${stylesMainUri}" rel="stylesheet">
-
-            <title>Cat Coding</title>
+            <title>Sandpack Previewer</title>
         </head>
-        <body>
-            <h1 id="count">0</h1>
-            <button id="add-button">add count</button>
-
+        <body>           
             <script src="${scriptUri}"></script>
         </body>
         </html>`;

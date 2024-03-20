@@ -10,8 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-		"onFileSystem:memfs"
-	],
+    "onFileSystem:memfs"
+  ],
   "browser": "./dist/web/extension.js",
   "contributes": {
     "commands": [
@@ -37,7 +37,13 @@
     "watch-web": "webpack --watch",
     "package-web": "webpack --mode production --devtool hidden-source-map",
     "lint": "eslint src --ext ts",
-    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
+    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. .",
+    "---": "---",
+    "start": "concurrently \"npm:start-debug\" \"npm:run-in-browser\"",
+    "start-debug": "./scripts/start-debug.sh",
+    "build": "./scripts/start-build.sh",
+    "start:sandpack-client-demo": "pnpm --filter sandpack-client-demo start",
+    "build:sandpack-client-demo": "pnpm --filter sandpack-client-demo build"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.2",
@@ -49,6 +55,7 @@
     "@typescript-eslint/parser": "^6.7.3",
     "@vscode/test-web": "^0.0.52",
     "assert": "^2.1.0",
+    "concurrently": "^8.2.2",
     "eslint": "^8.50.0",
     "mocha": "^10.2.0",
     "process": "^0.11.10",

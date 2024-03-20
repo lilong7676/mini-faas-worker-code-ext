@@ -24,6 +24,37 @@
 				"$ts-webpack-watch",
 				"$tslint-webpack-watch"
 			]
+		},
+    {
+      "label": "debug-extension",
+			"type": "shell",
+      "command": "./scripts/start-debug.sh",
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": [
+				"$ts-webpack-watch",
+				"$tslint-webpack-watch"
+			]
+		},
+    {
+			"type": "npm",
+			"script": "start:sandpack-client-demo",
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": [
+				"$ts-webpack-watch",
+				"$tslint-webpack-watch"
+			]
+		},
+    {
+			"type": "npm",
+			"script": "build:sandpack-client-demo",
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": [
+				"$ts-webpack-watch",
+				"$tslint-webpack-watch"
+			]
 		}
 	]
 }

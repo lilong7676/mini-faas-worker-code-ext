@@ -3,7 +3,6 @@ import {
   SandboxSetup,
   ClientOptions,
 } from "@codesandbox/sandpack-client";
-
 export async function reactDemo() {
   const titleEle = document.createElement("h1");
   titleEle.innerText = "React Demo";

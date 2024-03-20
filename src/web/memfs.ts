@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2024-03-15 24:41:23
  * @Last Modified by: lilonglong
- * @Last Modified time: 2024-03-15 15:51:46
+ * @Last Modified time: 2024-03-20 16:51:27
  */
 
 /*---------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ export class MemFs implements vscode.FileSystemProvider {
 
     this.writeFile(
       vscode.Uri.parse(`memfs:/index.js`),
-      textEncoder.encode('console.log("index")'),
+      textEncoder.encode('console.log("index hello")'),
       { create: true, overwrite: true }
     );
   }
