@@ -38,8 +38,16 @@ export function activate(context: vscode.ExtensionContext) {
 
     // 初始化 sample
     makeSampleFolder(sampleFilesMap);
-    // 打开预览界面
-    vscode.commands.executeCommand("mini-faas-worker-code-ext.preview");
+
+    setTimeout(() => {
+      // 默认打开此文件
+      vscode.commands.executeCommand(
+        "vscode.open",
+        vscode.Uri.from({ scheme, path: "/src/App.tsx" })
+      );
+      // 同时打开预览界面
+      vscode.commands.executeCommand("mini-faas-worker-code-ext.preview");
+    }, 100);
   };
 
   initWorkspace();
