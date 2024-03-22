@@ -24,6 +24,9 @@ pnpm start
 ## Extension Settings
 None.
 
+## Screenshots
+![](https://lilong7676-picture.oss-cn-hangzhou.aliyuncs.com/img/202403221520778.png)
+
 ## Known Issues
 
 
