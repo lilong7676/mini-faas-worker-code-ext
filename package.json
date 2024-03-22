@@ -10,7 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onFileSystem:memfs"
+    "onStartupFinished"
   ],
   "browser": "./dist/web/extension.js",
   "contributes": {
@@ -44,10 +44,11 @@
     "run-in-browser": "vscode-test-web --browserType=chromium --quality=stable --open-devtools --extensionDevelopmentPath=.",
     "---": "---",
     "start": "concurrently \"npm:start-debug\" \"npm:run-in-browser\"",
-    "start-debug": "./scripts/start-debug.sh",
+    "start-debug": "concurrently \"npm:watch-web\" \"npm:start:sandpack-client-demo\" \"npm:start:bundler\" ",
     "build": "./scripts/start-build.sh",
     "start:sandpack-client-demo": "pnpm --filter sandpack-client-demo start",
-    "build:sandpack-client-demo": "pnpm --filter sandpack-client-demo build"
+    "build:sandpack-client-demo": "pnpm --filter sandpack-client-demo build",
+    "start:bundler": "pnpm --filter bundler start"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.2",

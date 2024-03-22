@@ -23,20 +23,32 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
+  // 初始化工作空间
+  const initWorkspace = () => {
+    if (initialized) {
+      return;
+    }
+    initialized = true;
+
+    // 创建虚拟文件系统的根目录
+    vscode.workspace.updateWorkspaceFolders(0, 0, {
+      uri: vscode.Uri.from({ scheme, path: "/" }),
+      name: "工作空间",
+    });
+
+    // 初始化 sample
+    makeSampleFolder(sampleFilesMap);
+    // 打开预览界面
+    vscode.commands.executeCommand("mini-faas-worker-code-ext.preview");
+  };
+
+  initWorkspace();
+
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mini-faas-worker-code-ext.initWorkespace",
       () => {
-        if (initialized) {
-          return;
-        }
-        initialized = true;
-
-        // 创建虚拟文件系统的根目录
-        vscode.workspace.updateWorkspaceFolders(0, 0, {
-          uri: vscode.Uri.from({ scheme, path: "/" }),
-          name: "工作空间",
-        });
+        initWorkspace();
       }
     )
   );
