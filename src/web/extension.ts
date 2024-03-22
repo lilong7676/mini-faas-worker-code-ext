@@ -1,8 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { MemFs } from "./memfs";
+import memFs, { scheme } from "./memfs";
 import { PreviewPannel } from "./preview-panel";
+import sampleFilesMap from "../raw-source/.gitkeep?transform-to-memfs";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -15,31 +16,42 @@ export function activate(context: vscode.ExtensionContext) {
 
   let initialized = false;
 
-  // 初始化内存文件系统
-  const memFs = new MemFs();
-
   // 注册内存文件系统
   context.subscriptions.push(
-    vscode.workspace.registerFileSystemProvider("memfs", memFs, {
+    vscode.workspace.registerFileSystemProvider(scheme, memFs, {
       isCaseSensitive: true,
     })
   );
 
-  // 随机写入文件
-  memFs.seed();
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "mini-faas-worker-code-ext.initWorkespace",
+      () => {
+        if (initialized) {
+          return;
+        }
+        initialized = true;
+
+        // 创建虚拟文件系统的根目录
+        vscode.workspace.updateWorkspaceFolders(0, 0, {
+          uri: vscode.Uri.from({ scheme, path: "/" }),
+          name: "工作空间",
+        });
+      }
+    )
+  );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("mini-faas-worker-code-ext.init", () => {
-      if (initialized) {
-        return;
+    vscode.commands.registerCommand(
+      "mini-faas-worker-code-ext.initFiles",
+      () => {
+        if (!initialized) {
+          return;
+        }
+        makeSampleFolder(sampleFilesMap);
+        vscode.commands.executeCommand("mini-faas-worker-code-ext.preview");
       }
-      initialized = true;
-      // 创建虚拟文件系统的根目录
-      vscode.workspace.updateWorkspaceFolders(0, 0, {
-        uri: vscode.Uri.parse("memfs:/"),
-        name: "云函数工作空间",
-      });
-    })
+    )
   );
 
   // dump 文件
@@ -73,4 +85,19 @@ export function activate(context: vscode.ExtensionContext) {
 // This method is called when your extension is deactivated
 export function deactivate() {
   console.log("@@@ deavtivate");
+}
+
+function makeSampleFolder(fileMap: Record<string, string>) {
+  const textEncoder = new TextEncoder();
+
+  const rootUri = vscode.Uri.from({ scheme, path: "/" });
+
+  Object.entries(fileMap).forEach(([filePath, content]) => {
+    const fullFilePath = vscode.Uri.joinPath(rootUri, filePath);
+    memFs.writeFile(fullFilePath, textEncoder.encode(content), {
+      create: true,
+      overwrite: true,
+      autoCreateDir: true,
+    });
+  });
 }

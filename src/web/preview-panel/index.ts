@@ -3,10 +3,11 @@
  * @Author: lilonglong
  * @Date: 2024-03-15 24:04:10
  * @Last Modified by: lilonglong
- * @Last Modified time: 2024-03-20 16:31:35
+ * @Last Modified time: 2024-03-22 11:09:47
  */
 
 import * as vscode from "vscode";
+import memFs from "../memfs";
 
 export class PreviewPannel {
   // 全局只允许存在一个 pannel 实例
@@ -59,12 +60,24 @@ export class PreviewPannel {
       const { command } = message;
       if (command === "reload") {
         // 刷新页面，仅本地调试用 （https://github.com/microsoft/vscode/issues/96242）
-        vscode.commands.executeCommand('workbench.action.webview.reloadWebviewAction');
+        vscode.commands.executeCommand(
+          "workbench.action.webview.reloadWebviewAction"
+        );
       }
     });
 
     // 监听 webview 的关闭事件
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
+
+    // 监听 memFs 的文件变化
+    memFs.onDidChangeFile((fileChangeEvents) => {
+      console.log("@@ onDidChangeFile", fileChangeEvents);
+      // 向 webview 发消息，通知最新的文件内容
+      this.onDidChangeFile();
+    });
+
+    // 根据当前 memFs 内容首次初始化
+    this.onDidChangeFile();
   }
 
   public dispose() {
@@ -102,5 +115,12 @@ export class PreviewPannel {
             <script src="${scriptUri}"></script>
         </body>
         </html>`;
+  }
+
+  private onDidChangeFile() {
+    this._panel.webview.postMessage({
+      command: "onDidChangeFile",
+      data: memFs._dump(),
+    });
   }
 }

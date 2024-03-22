@@ -16,8 +16,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "mini-faas-worker-code-ext.init",
-        "title": "mini-faas-worker: init"
+        "command": "mini-faas-worker-code-ext.initWorkespace",
+        "title": "mini-faas-worker: initWorkespace"
+      },
+      {
+        "command": "mini-faas-worker-code-ext.initFiles",
+        "title": "mini-faas-worker: initFiles"
       },
       {
         "command": "mini-faas-worker-code-ext.dump",
@@ -37,7 +41,7 @@
     "watch-web": "webpack --watch",
     "package-web": "webpack --mode production --devtool hidden-source-map",
     "lint": "eslint src --ext ts",
-    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. .",
+    "run-in-browser": "vscode-test-web --browserType=chromium --quality=stable --open-devtools --extensionDevelopmentPath=.",
     "---": "---",
     "start": "concurrently \"npm:start-debug\" \"npm:run-in-browser\"",
     "start-debug": "./scripts/start-debug.sh",
