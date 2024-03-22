@@ -2,44 +2,66 @@ import {
   loadSandpackClient,
   SandboxSetup,
   ClientOptions,
+  SandpackClient,
 } from "@codesandbox/sandpack-client";
 
 interface Files {
   [x: string]: { code: string };
 }
+
+let sandpackClientInited = false;
 export async function reactDemo() {
-  
-  // Iframe selector or element itself
-  const iframe = document.createElement("iframe");
-  iframe.id = "sandpack-client";
-  iframe.style.border = "0";
-  iframe.style.width = "100%";
-  iframe.style.height = "100%";
-  iframe.style.overflow = "hidden";
+  let client: SandpackClient | undefined = undefined;
 
-  document.body.appendChild(iframe);
+  const createSandpackClient = async (codeFiles: Files) => {
+    // Iframe selector or element itself
+    const iframe = document.createElement("iframe");
+    iframe.id = "sandpack-client";
+    iframe.style.border = "0";
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.overflow = "hidden";
 
-  // Files, environment and dependencies
-  const content: SandboxSetup = {
-    files: {},
-    template: "create-react-app",
+    document.body.appendChild(iframe);
+
+    // Files, environment and dependencies
+    const content: SandboxSetup = {
+      files: codeFiles || {},
+      template: "create-react-app",
+    };
+
+    // Optional options
+    const options: ClientOptions = {
+      showErrorScreen: true,
+      showLoadingScreen: true,
+      showOpenInCodeSandbox: false,
+      // self hosted bundler url.
+      // see: https://sandpack.codesandbox.io/docs/guides/hosting-the-bundler
+      bundlerURL: "http://localhost:9001",
+    };
+    // Properly load and mount the bundler
+    client = await loadSandpackClient(iframe, content, options);
+
+    // client.listen((msg) => {
+    //   console.info("@@sandpack msg: ", msg);
+    // });
   };
 
-  // Optional options
-  const options: ClientOptions = {
-    showErrorScreen: true,
-    showLoadingScreen: true,
-    showOpenInCodeSandbox: false,
-    // self hosted bundler url. https://sandpack.codesandbox.io/docs/guides/hosting-the-bundler
-    bundlerURL: "http://localhost:9001",
+  const updateSandbox = async (codeFiles: Files) => {
+    if (!sandpackClientInited) {
+      sandpackClientInited = true;
+      createSandpackClient(codeFiles);
+    } else {
+      /**
+       * When you make a change, you can just run `updateSandbox`.
+       * We'll automatically discover which files have changed
+       * and hot reload them.
+       */
+      client?.updateSandbox({
+        files: codeFiles,
+      });
+    }
   };
-
-  // Properly load and mount the bundler
-  const client = await loadSandpackClient(iframe, content, options);
-
-  if (acquireVsCodeApi) {
-    const vscode = acquireVsCodeApi();
-  }
 
   window.addEventListener("message", (event) => {
     const message = event.data; // The json data that the extension sent
@@ -52,19 +74,7 @@ export async function reactDemo() {
           code: data[key],
         };
       });
-
-      /**
-       * When you make a change, you can just run `updateSandbox`.
-       * We'll automatically discover which files have changed
-       * and hot reload them.
-       */
-      client.updateSandbox({
-        files,
-      });
+      updateSandbox(files);
     }
-  });
-
-  client.listen((msg) => {
-    // console.info("@@sandpack msg: ", msg);
   });
 }

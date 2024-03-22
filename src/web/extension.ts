@@ -23,35 +23,6 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
-  // 初始化工作空间
-  const initWorkspace = () => {
-    if (initialized) {
-      return;
-    }
-    initialized = true;
-
-    // 创建虚拟文件系统的根目录
-    vscode.workspace.updateWorkspaceFolders(0, 0, {
-      uri: vscode.Uri.from({ scheme, path: "/" }),
-      name: "工作空间",
-    });
-
-    // 初始化 sample
-    makeSampleFolder(sampleFilesMap);
-
-    setTimeout(() => {
-      // 默认打开此文件
-      vscode.commands.executeCommand(
-        "vscode.open",
-        vscode.Uri.from({ scheme, path: "/src/App.tsx" })
-      );
-      // 同时打开预览界面
-      vscode.commands.executeCommand("mini-faas-worker-code-ext.preview");
-    }, 100);
-  };
-
-  initWorkspace();
-
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mini-faas-worker-code-ext.initWorkespace",
@@ -87,6 +58,35 @@ export function activate(context: vscode.ExtensionContext) {
       PreviewPannel.createOrShow(context.extensionUri);
     })
   );
+
+  // 初始化工作空间
+  const initWorkspace = () => {
+    if (initialized) {
+      return;
+    }
+    initialized = true;
+
+    // 创建虚拟文件系统的根目录
+    vscode.workspace.updateWorkspaceFolders(0, 0, {
+      uri: vscode.Uri.from({ scheme, path: "/" }),
+      name: "工作空间",
+    });
+
+    // 初始化 sample
+    makeSampleFolder(sampleFilesMap);
+
+    setTimeout(() => {
+      // 默认打开此文件
+      vscode.commands.executeCommand(
+        "vscode.open",
+        vscode.Uri.from({ scheme, path: "/src/App.tsx" })
+      );
+      // 同时打开预览界面
+      vscode.commands.executeCommand("mini-faas-worker-code-ext.preview");
+    }, 100);
+  };
+
+  initWorkspace();
 
   // if (vscode.window.registerWebviewPanelSerializer) {
   //   // Make sure we register a serializer in activation event

@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2024-03-15 24:04:10
  * @Last Modified by: lilonglong
- * @Last Modified time: 2024-03-22 11:09:47
+ * @Last Modified time: 2024-03-22 14:07:33
  */
 
 import * as vscode from "vscode";
@@ -48,8 +48,6 @@ export class PreviewPannel {
   private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
     this._panel = panel;
     this._extensionUri = extensionUri;
-
-    this._panel.webview.html = this._getHtmlForWebview(panel.webview);
 
     // 设置 webview 的 html 文件
     this._panel.webview.html = this._getHtmlForWebview(this._panel.webview);
