@@ -14,3 +14,4 @@ webpack.config.js
 packages/**
 scripts/**
 .ovxt.token
+.nvmrc
