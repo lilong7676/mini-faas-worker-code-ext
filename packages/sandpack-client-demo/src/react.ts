@@ -37,8 +37,9 @@ export async function reactDemo() {
       showOpenInCodeSandbox: false,
       // self hosted bundler url.
       // see: https://sandpack.codesandbox.io/docs/guides/hosting-the-bundler
-      bundlerURL: "http://localhost:9001",
+      bundlerURL: process.env.SANDPACK_BUNDLER_URL,
     };
+
     // Properly load and mount the bundler
     client = await loadSandpackClient(iframe, content, options);
 

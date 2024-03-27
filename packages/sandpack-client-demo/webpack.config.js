@@ -12,7 +12,24 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const myCopyWebpackPlugin = require("./copy-webpack-plugin");
 
-const PORT = 9000;
+const NODE_ENV = process.env.NODE_ENV;
+
+// env
+const dotenv = require("dotenv");
+const env = dotenv.config({
+  path: path.resolve(process.cwd(), `.${NODE_ENV}.env`),
+}).parsed;
+if (!env) {
+  throw new Error('no env!');
+}
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
+
+console.log('---envKeys', envKeys);
+
+const PORT = env?.DEV_PORT || 9000;
 
 /** @type WebpackConfig */
 const webExtensionConfig = {
@@ -61,6 +78,7 @@ const webExtensionConfig = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1, // disable chunks by default since web extensions must be a single bundle
     }),
+    new webpack.DefinePlugin(envKeys),
   ],
   externals: {},
   performance: {

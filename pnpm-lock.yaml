@@ -55,7 +55,9 @@ importers:
       '@codesandbox/sandpack-client': ^2.13.2
       '@types/vscode-webview': ^1.57.5
       clean-webpack-plugin: ^4.0.0
+      cross-env: ^7.0.3
       css-loader: ^6.10.0
+      dotenv: ^16.4.5
       html-webpack-plugin: ^5.6.0
       style-loader: ^3.3.4
       ts-loader: ^9.4.4
@@ -69,7 +71,9 @@ importers:
     devDependencies:
       '@types/vscode-webview': 1.57.5
       clean-webpack-plugin: 4.0.0_webpack@5.89.0
+      cross-env: 7.0.3
       css-loader: 6.10.0_webpack@5.89.0
+      dotenv: 16.4.5
       html-webpack-plugin: 5.6.0_webpack@5.89.0
       style-loader: 3.3.4_webpack@5.89.0
       ts-loader: 9.5.0_rxsrsbucyl72m2mk3wz2j4kili
@@ -1747,7 +1751,7 @@ packages:
       webpack-cli: 5.x.x
     dependencies:
       webpack: 5.89.0_webpack-cli@5.1.4
-      webpack-cli: 5.1.4_webpack@5.89.0
+      webpack-cli: 5.1.4_25yzlxhv2pw2jxbkano4hrryyi
     dev: true
 
   /@webpack-cli/info/2.0.2_3bwyylfpud4gqu53lc4xoytk3u:
@@ -1758,7 +1762,7 @@ packages:
       webpack-cli: 5.x.x
     dependencies:
       webpack: 5.89.0_webpack-cli@5.1.4
-      webpack-cli: 5.1.4_webpack@5.89.0
+      webpack-cli: 5.1.4_25yzlxhv2pw2jxbkano4hrryyi
     dev: true
 
   /@webpack-cli/serve/2.0.5_3bwyylfpud4gqu53lc4xoytk3u:
@@ -2415,6 +2419,14 @@ packages:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
     dev: false
 
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+    dev: true
+
   /cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -2705,7 +2717,6 @@ packages:
   /dotenv/16.4.5:
     resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
     engines: {node: '>=12'}
-    dev: false
 
   /duplexify/3.7.1:
     resolution: {integrity: sha512-07z8uv2wMyS51kKhD1KsdXJg5WQ6t93RneqRxUHnskXVtlYYkLqM0gqStQZ3pj073g687jPCHrqNfCzawLYh5g==}
@@ -5838,7 +5849,7 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.9_webpack@5.89.0
       watchpack: 2.4.0
-      webpack-cli: 5.1.4_webpack@5.89.0
+      webpack-cli: 5.1.4_25yzlxhv2pw2jxbkano4hrryyi
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
