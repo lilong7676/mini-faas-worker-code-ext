@@ -13,3 +13,4 @@ webpack.config.js
 **/*.ts
 packages/**
 scripts/**
+.ovxt.token

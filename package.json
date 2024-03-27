@@ -2,7 +2,8 @@
   "name": "mini-faas-worker-code-ext",
   "displayName": "mini-faas-worker-code-ext",
   "description": "低码云函数在线编辑插件",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "publisher": "lilong7676",
   "engines": {
     "vscode": "^1.83.0"
   },
@@ -12,6 +13,10 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lilong7676/mini-faas-worker-code-ext"
+  },
   "browser": "./dist/web/extension.js",
   "contributes": {
     "commands": [
@@ -34,6 +39,7 @@
     ]
   },
   "scripts": {
+    "postinstall": "cd packages/bundler && npm install && cd ../sandpack-client-demo && npm install && cd ../sandpack-react-demo && npm install",
     "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
     "pretest": "pnpm run compile-web",
     "vscode:prepublish": "pnpm run build",
