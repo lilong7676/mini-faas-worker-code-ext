@@ -27,8 +27,8 @@
 		},
     {
       "label": "debug-extension",
-			"type": "shell",
-      "command": "./scripts/start-debug.sh",
+			"type": "npm",
+      "script": "start-debug",
 			"group": "build",
 			"isBackground": true,
 			"problemMatcher": [
