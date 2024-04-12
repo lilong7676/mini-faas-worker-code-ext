@@ -120,4 +120,7 @@ function makeSampleFolder(fileMap: Record<string, string>) {
       autoCreateDir: true,
     });
   });
+
+  const rootStat = memFs.stat(rootUri);
+  console.log('rootStat', rootStat);
 }

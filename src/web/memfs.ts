@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2024-03-15 24:41:23
  * @Last Modified by: lilonglong
- * @Last Modified time: 2024-03-22 10:48:31
+ * @Last Modified time: 2024-04-12 10:58:18
  */
 
 /*---------------------------------------------------------------------------------------------
@@ -92,7 +92,7 @@ class MemFs implements vscode.FileSystemProvider {
 
     const dirContents = dir.contents;
 
-    const time = Date.now() / 1000;
+    const time = Date.now();
     const entry = dirContents.get(basename(uri.path));
     if (!entry) {
       if (create) {
@@ -128,6 +128,8 @@ class MemFs implements vscode.FileSystemProvider {
     if (oldEntry) {
       parentEntry.contents.set(newBasename, oldEntry);
       parentEntry.contents.delete(oldBasename);
+      parentEntry.mtime = Date.now();
+      oldEntry.mtime = Date.now();
 
       this._fireSoon(
         { type: vscode.FileChangeType.Deleted, uri: _oldUri },
@@ -140,6 +142,7 @@ class MemFs implements vscode.FileSystemProvider {
     try {
       const dir = this.getParent(uri);
       dir.contents.delete(basename(uri.path));
+      dir.mtime = Date.now();
       this._fireSoon({ type: vscode.FileChangeType.Deleted, uri });
     } catch (e) {}
   }
@@ -189,7 +192,7 @@ class MemFs implements vscode.FileSystemProvider {
       throw vscode.FileSystemError.FileNotFound();
     }
 
-    const now = Date.now() / 1000;
+    const now = Date.now();
     dir.contents.set(basename(uri.path), new FsEntry(new Map(), now, now));
     this._fireSoon({ type: vscode.FileChangeType.Created, uri });
   }
@@ -321,7 +324,10 @@ class FsEntry {
     private _data: Uint8Array | Map<string, FsEntry>,
     public ctime: number,
     public mtime: number
-  ) {}
+  ) {
+    this.ctime = ctime || Date.now();
+		this.mtime = mtime || Date.now();
+  }
 
   get data() {
     if (this.type === vscode.FileType.Directory) {
