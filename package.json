@@ -39,7 +39,7 @@
     ]
   },
   "scripts": {
-    "postinstall": "cd packages/bundler && npm install && cd ../sandpack-client-demo && npm install && cd ../sandpack-react-demo && npm install",
+    "postinstall": "cd packages/bundler && npm install && cd ../sandpack-client-demo && npm install",
     "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
     "pretest": "pnpm run compile-web",
     "vscode:prepublish": "pnpm run build",

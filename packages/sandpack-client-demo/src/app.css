@@ -8,3 +8,15 @@ html, body {
     color: #212121;
     font-size: 16px;
 }
+
+.build-button {
+  display: block;
+  margin: 20px;
+}
+
+.output-textarea {
+  display: block;
+  width: 90%;
+  height: 400px;
+  margin: 0 auto;
+}

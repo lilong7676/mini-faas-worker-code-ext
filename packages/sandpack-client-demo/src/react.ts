@@ -9,8 +9,10 @@ interface Files {
   [x: string]: { code: string };
 }
 
+const disposableElements: HTMLElement[] = [];
+
 let sandpackClientInited = false;
-export async function reactDemo() {
+export function reactDemo() {
   let client: SandpackClient | undefined = undefined;
 
   const createSandpackClient = async (codeFiles: Files) => {
@@ -23,6 +25,7 @@ export async function reactDemo() {
     iframe.style.overflow = "hidden";
 
     document.body.appendChild(iframe);
+    disposableElements.push(iframe);
 
     // Files, environment and dependencies
     const content: SandboxSetup = {
@@ -64,7 +67,7 @@ export async function reactDemo() {
     }
   };
 
-  window.addEventListener("message", (event) => {
+  const onMessage = (event: MessageEvent<any>) => {
     const message = event.data; // The json data that the extension sent
     const { command, data } = message;
     if (command === "onDidChangeFile") {
@@ -77,5 +80,20 @@ export async function reactDemo() {
       });
       updateSandbox(files);
     }
-  });
+  };
+
+  window.addEventListener("message", onMessage);
+
+  if (window.files) {
+    updateSandbox(window.files);
+  }
+
+  return () => {
+    window.removeEventListener("message", onMessage);
+
+    disposableElements.forEach((ele) => {
+      document.body.removeChild(ele);
+    });
+    disposableElements.length = 0;
+  };
 }
