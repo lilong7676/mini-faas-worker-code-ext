@@ -6,10 +6,11 @@
  * @Author: lilonglong
  * @Date: 2024-04-15 24:18:44
  * @Last Modified by: lilonglong
- * @Last Modified time: 2024-04-19 17:03:53
+ * @Last Modified time: 2024-04-28 15:30:18
  */
 
 import * as esbuild from "esbuild-wasm";
+import path from "path-browserify";
 
 interface Files {
   [x: string]: string;
@@ -34,7 +35,10 @@ const startBundle = async (files: Files) => {
     setup(build) {
       // Redirect all paths starting with "/" to "faas" namespace
       build.onResolve({ filter: /.js$/ }, (args) => {
-        return { path: args.path, namespace: "faas" };
+        return {
+          path: args.path,
+          namespace: "faas",
+        };
       });
 
       build.onLoad({ filter: /.js$/, namespace: "faas" }, (args) => {
@@ -53,7 +57,7 @@ const startBundle = async (files: Files) => {
     format: "esm",
     write: false,
     outfile: "out.js",
-    entryPoints: ["/index.js"],
+    entryPoints: ["/faas/index.js"],
     plugins: [faasOnResolvePlugin],
   });
 

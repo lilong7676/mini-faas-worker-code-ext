@@ -4,5 +4,4 @@ node_modules
 .vscode-test-web/
 *.vsix
 resources/web/
-src/raw-source/
 .ovxt.token

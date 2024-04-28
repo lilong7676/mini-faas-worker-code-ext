@@ -3,8 +3,7 @@
 import * as vscode from "vscode";
 import memFs, { scheme } from "./memfs";
 import { PreviewPannel } from "./preview-panel";
-// import sampleFilesMap from "../raw-source/.gitkeep?transform-to-memfs";
-import sampleFilesMap from '../raw-source/FaaS/index.js?transform-to-memfs';
+import sampleFilesMap from "../raw-source/.gitkeep?transform-to-memfs";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed

@@ -11,8 +11,10 @@ interface Files {
 
 const disposableElements: HTMLElement[] = [];
 
-let sandpackClientInited = false;
 export function reactDemo() {
+  let sandpackClientInited = false;
+
+  console.log("sandpackClientInited", sandpackClientInited);
   let client: SandpackClient | undefined = undefined;
 
   const createSandpackClient = async (codeFiles: Files) => {
@@ -52,9 +54,21 @@ export function reactDemo() {
   };
 
   const updateSandbox = async (codeFiles: Files) => {
+    // 特殊处理文件路径，仅供演示用
+    const processedCodeFiles: Record<string, any> = {};
+    Object.entries(codeFiles).forEach(([filePath, fileContent]) => {
+      if (filePath.startsWith("/react/")) {
+        processedCodeFiles[filePath.replace("/react/", "")] = {
+          code: fileContent,
+        };
+      }
+    });
+
+    console.log("updateSandbox processedCodeFiles", processedCodeFiles);
+
     if (!sandpackClientInited) {
       sandpackClientInited = true;
-      createSandpackClient(codeFiles);
+      createSandpackClient(processedCodeFiles);
     } else {
       /**
        * When you make a change, you can just run `updateSandbox`.
@@ -62,7 +76,7 @@ export function reactDemo() {
        * and hot reload them.
        */
       client?.updateSandbox({
-        files: codeFiles,
+        files: processedCodeFiles,
       });
     }
   };
@@ -72,13 +86,7 @@ export function reactDemo() {
     const { command, data } = message;
     if (command === "onDidChangeFile") {
       console.log("receive message from extension", message);
-      const files: Files = {};
-      Object.keys(data).forEach((key) => {
-        files[key] = {
-          code: data[key],
-        };
-      });
-      updateSandbox(files);
+      updateSandbox(data);
     }
   };
 
@@ -89,11 +97,13 @@ export function reactDemo() {
   }
 
   return () => {
-    window.removeEventListener("message", onMessage);
+    client?.destroy();
 
     disposableElements.forEach((ele) => {
       document.body.removeChild(ele);
     });
     disposableElements.length = 0;
+
+    window.removeEventListener("message", onMessage);
   };
 }
