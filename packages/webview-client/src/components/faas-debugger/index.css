@@ -1,0 +1,10 @@
+.faas-debugger {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.faas-debugger .faas-debugger__build-result {
+  flex-grow: 1;
+}

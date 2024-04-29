@@ -1,4 +1,4 @@
-html, body {
+html, body, #root {
     height: 100%;
     width: 100%;
     padding: 0;
@@ -19,4 +19,16 @@ html, body {
   width: 90%;
   height: 400px;
   margin: 0 auto;
+}
+
+.main-panels {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.main-panels .main-panels__view {
+  width: 100%;
+  height: 100%;
 }

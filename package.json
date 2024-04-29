@@ -39,7 +39,7 @@
     ]
   },
   "scripts": {
-    "postinstall": "cd packages/bundler && npm install && cd ../sandpack-client-demo && npm install",
+    "postinstall": "cd packages/bundler && npm install && cd ../webview-client && npm install",
     "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
     "pretest": "pnpm run compile-web",
     "vscode:prepublish": "pnpm run build",
@@ -51,10 +51,10 @@
     "publish": "npx ovsx publish -p your-ovsx-token",
     "---": "---",
     "start": "concurrently \"npm:start-debug\" \"npm:run-in-browser\"",
-    "start-debug": "concurrently \"npm:watch-web\" \"npm:start:sandpack-client-demo\" \"npm:start:bundler\" ",
+    "start-debug": "concurrently \"npm:watch-web\" \"npm:start:webview-client\" \"npm:start:bundler\" ",
     "build": "./scripts/start-build.sh",
-    "start:sandpack-client-demo": "pnpm --filter sandpack-client-demo start",
-    "build:sandpack-client-demo": "pnpm --filter sandpack-client-demo build",
+    "start:webview-client": "pnpm --filter webview-client start",
+    "build:webview-client": "pnpm --filter webview-client build",
     "start:bundler": "pnpm --filter bundler start"
   },
   "devDependencies": {
@@ -69,6 +69,7 @@
     "assert": "^2.1.0",
     "concurrently": "^8.2.2",
     "eslint": "^8.50.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "mocha": "^10.2.0",
     "process": "^0.11.10",
     "ts-loader": "^9.4.4",

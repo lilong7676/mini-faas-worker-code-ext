@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2024-03-15 24:04:10
  * @Last Modified by: lilonglong
- * @Last Modified time: 2024-03-22 14:07:33
+ * @Last Modified time: 2024-04-29 17:37:17
  */
 
 import * as vscode from "vscode";
@@ -61,6 +61,8 @@ export class PreviewPannel {
         vscode.commands.executeCommand(
           "workbench.action.webview.reloadWebviewAction"
         );
+      } else if (command === "getFiles") {
+        this.onDidChangeFile();
       }
     });
 
@@ -109,7 +111,8 @@ export class PreviewPannel {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Sandpack Previewer</title>
         </head>
-        <body>           
+        <body>
+            <div id="root"></div>           
             <script src="${scriptUri}"></script>
         </body>
         </html>`;

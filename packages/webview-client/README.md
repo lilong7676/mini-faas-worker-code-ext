@@ -1,10 +1,15 @@
-# `webview-ui` Directory
+# [WIP]: sandpack-client-demo
 
-This directory contains all of the code that will be executed within the webview context. It can be thought of as the place where all the "frontend" code of a webview is contained.
+A demo used in mini-faas-worker-code-ext webview.
 
-Types of content that can be contained here:
+## Features
 
-- Frontend framework code (i.e. React, Svelte, Vue, etc.)
-- JavaScript files
-- CSS files
-- Assets / resources (i.e. images, illustrations, etc.)
+* [x] run in vscode webviews environment
+* [x] use sandpack to build and run react in browser
+* [x] support build js modules to single file
+
+## Known Issues
+
+<!-- ## Release Notes
+
+--- -->

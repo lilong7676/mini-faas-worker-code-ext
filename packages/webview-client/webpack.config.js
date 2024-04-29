@@ -35,7 +35,7 @@ const PORT = env?.DEV_PORT || 9000;
 const webExtensionConfig = {
   mode: "none", // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
   entry: {
-    app: "./src/index.ts",
+    app: "./src/index.tsx",
   },
   output: {
     filename: "[name].js",
@@ -44,7 +44,7 @@ const webExtensionConfig = {
     publicPath: "/",
   },
   resolve: {
-    extensions: [".ts", ".js"], // support ts-files and js-files
+    extensions: [".tsx",".ts", ".js"],
     alias: {
       // provides alternate implementation for node module and source files
     },
@@ -52,13 +52,9 @@ const webExtensionConfig = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "ts-loader",
-          },
-        ],
+        use: 'babel-loader'
       },
       {
         test: /\.css$/,
