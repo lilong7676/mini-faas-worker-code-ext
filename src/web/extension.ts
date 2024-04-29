@@ -45,13 +45,6 @@ export function activate(context: vscode.ExtensionContext) {
     )
   );
 
-  // dump 文件
-  context.subscriptions.push(
-    vscode.commands.registerCommand("mini-faas-worker-code-ext.dump", () => {
-      // 获取文件系统内文件内容
-    })
-  );
-
   // 构建并预览命令
   context.subscriptions.push(
     vscode.commands.registerCommand("mini-faas-worker-code-ext.preview", () => {

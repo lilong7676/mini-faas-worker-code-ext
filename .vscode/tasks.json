@@ -48,7 +48,7 @@
 		},
     {
 			"type": "npm",
-			"script": "build:sandpack-client-demo",
+			"script": "build:webview-client",
 			"group": "build",
 			"isBackground": true,
 			"problemMatcher": [

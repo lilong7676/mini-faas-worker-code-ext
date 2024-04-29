@@ -6,7 +6,7 @@
  * @Author: lilonglong
  * @Date: 2024-04-15 24:18:44
  * @Last Modified by: lilonglong
- * @Last Modified time: 2024-04-29 17:06:52
+ * @Last Modified time: 2024-04-29 17:47:50
  */
 
 import React, { useEffect, useState, useCallback, useMemo } from "react";
@@ -130,7 +130,7 @@ export default function FaasDebugger() {
         className="faas-debugger__build-result"
         placeholder="please hit the build button hard"
         resize="vertical"
-        rows={40}
+        rows={30}
         value={output}
         readOnly
       ></VSCodeTextArea>

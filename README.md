@@ -26,8 +26,9 @@ npm start
 None.
 
 ## Screenshots
-![](https://lilong7676-picture.oss-cn-hangzhou.aliyuncs.com/img/202404281622952.png)
-![](https://lilong7676-picture.oss-cn-hangzhou.aliyuncs.com/img/202404281622594.png)
+![](https://lilong7676-picture.oss-cn-hangzhou.aliyuncs.com/img/202404291752142.png)
+![](https://lilong7676-picture.oss-cn-hangzhou.aliyuncs.com/img/202404291752574.png)
+![](https://lilong7676-picture.oss-cn-hangzhou.aliyuncs.com/img/202404291754180.png)
 
 ## Known Issues
 

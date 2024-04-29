@@ -2,7 +2,7 @@
   "name": "mini-faas-worker-code-ext",
   "displayName": "mini-faas-worker-code-ext",
   "description": "低码云函数在线编辑插件",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "lilong7676",
   "engines": {
     "vscode": "^1.75.0"
@@ -27,10 +27,6 @@
       {
         "command": "mini-faas-worker-code-ext.initFiles",
         "title": "mini-faas-worker: initFiles"
-      },
-      {
-        "command": "mini-faas-worker-code-ext.dump",
-        "title": "mini-faas-worker: Dump all faas code"
       },
       {
         "command": "mini-faas-worker-code-ext.preview",

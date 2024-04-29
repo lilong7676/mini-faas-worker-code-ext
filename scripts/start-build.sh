@@ -1,8 +1,8 @@
 #!/bin/bash
 # 构建脚本
 
-# 首先构建 sandpack-client
-npm run build:sandpack-client-demo
+# 首先构建 webview-client
+npm run build:webview-client
 
 # 然后构建 extension for web
 npm run package-web
