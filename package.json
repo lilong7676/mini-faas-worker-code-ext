@@ -2,7 +2,7 @@
   "name": "mini-faas-worker-code-ext",
   "displayName": "mini-faas-worker-code-ext",
   "description": "低码云函数在线编辑插件",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "lilong7676",
   "engines": {
     "vscode": "^1.75.0"
@@ -48,6 +48,7 @@
     "package-web": "webpack --mode production --devtool hidden-source-map",
     "lint": "eslint src --ext ts",
     "run-in-browser": "vscode-test-web --browserType=chromium --quality=stable --open-devtools --extensionDevelopmentPath=.",
+    "publish": "npx ovsx publish -p your-ovsx-token",
     "---": "---",
     "start": "concurrently \"npm:start-debug\" \"npm:run-in-browser\"",
     "start-debug": "concurrently \"npm:watch-web\" \"npm:start:sandpack-client-demo\" \"npm:start:bundler\" ",
